@@ -22,7 +22,7 @@ fun Task_2(): Int {
     val a = scanner.nextLine() 
     var c = 0 
 for (i in 0..9) { 
-    if (a.contains('R' + i) && a.contains('W' + i) && a.contains('R' + i)) { 
+    if (a.contains('R' + i) && a.contains('W' + i) && a.contains('B' + i)) { 
         c++ } 
     } 
     return c 

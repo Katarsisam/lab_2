@@ -53,7 +53,7 @@ int Task_2()
     getline(cin,a);   
     int c=0;
     for(int i = 0; i<=9; i++)
-        if(a.find('R'+i)!=a.npos && a.find('W'+i)!=a.npos && a.find('R'+i)!=a.npos) 
+        if(a.find('R'+i)!=a.npos && a.find('W'+i)!=a.npos && a.find('B'+i)!=a.npos) 
             c++;
     return c;
 }

@@ -27,7 +27,7 @@ let mut a = String::new();
 stdin().read_line(&mut a).unwrap(); 
 let mut c = 0; 
 for i in 0..=9 { 
-if a.contains(&format!("R{}", i)) && a.contains(&format!("W{}", i)) && a.contains(&format!("R{}", i)) { c += 1; } } 
+if a.contains(&format!("R{}", i)) && a.contains(&format!("W{}", i)) && a.contains(&format!("B{}", i)) { c += 1; } } 
 return c; }
 
 
