@@ -6,12 +6,12 @@
 #include <locale>
 int Task_1(int &N);
 int Task_2();
-void Task_3(int &a, int len);
+int Task_3(int &a, int len);
 int Lenth(int &a);
 int SimplNumb(int &a);
 using namespace std;
 int main(){
-    int Numb, k;
+    int Numb, k, count = 0, NumbX;
     setlocale(LC_ALL,"rus");
     scanf("%d", &Numb);
     switch (Numb)
@@ -23,7 +23,11 @@ int main(){
         printf("%d\n",Task_2());
         break;
     case 3:{
-        Task_3(k, Lenth(k));
+        scanf("%d", &NumbX);
+        printf("Numbers:");
+        while(count < NumbX){
+        printf("\n%d",Task_3(k, Lenth(k)));
+        count++;}
         printf("\n");}
         break;
     default:
@@ -58,24 +62,20 @@ int Task_2()
     return c;
 }
 
-void Task_3(int &a, int len){
+int Task_3(int &a, int len){
    
-    int step = 1, numb =0;
+    int step = 1;
     int X = 0;
-
+    int MX = a;
    
-    printf("Numbers:");
+    
    
     
     for(int i = 0; i<len; i++){
         
-        if(step==1 && a/10 !=0){
-            numb++;
-            printf("\n%d: ",numb);}
 
         if(a%10 == (a/10)%10 || a%10 == X%10){
-           
-            printf("%d",a%10);
+           // printf("%d",a%10);
             step=0;}
         else 
             step++;
@@ -83,6 +83,7 @@ void Task_3(int &a, int len){
         X =a;
         a/=10;
     }
+    return step == 0 ? MX:NULL;
 }
 
 
