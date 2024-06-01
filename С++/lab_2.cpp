@@ -83,7 +83,7 @@ int Task_3(int &a, int len){
         X =a;
         a/=10;
     }
-    return step == 0 ? MX:NULL;
+    return step == 0 ? MX:0;
 }
 
 

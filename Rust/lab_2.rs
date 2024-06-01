@@ -1,8 +1,6 @@
 use std::io::stdin; 
 use std::io;
 
-
-
 fn task_1(n: &mut i32) -> i32 { 
 let mut ak = 0; 
 let mut input = String::new(); 
@@ -20,8 +18,6 @@ while  !simpl_numb(al) == true{
 return if *n - ak < al - *n { *n - ak } else { al-*n }; 
 }
 
-
-
 fn task_2() -> i32 { 
 let mut a = String::new(); 
 stdin().read_line(&mut a).unwrap(); 
@@ -30,12 +26,10 @@ for i in 0..=9 {
 if a.contains(&format!("R{}", i)) && a.contains(&format!("W{}", i)) && a.contains(&format!("B{}", i)) { c += 1; } } 
 return c; }
 
-
-
 fn task_3(a: &mut i32, len: i32) -> i32 {
-    let mut step = 0;
-    let mut x = *a;
-    let mut mx = *a;
+    let mut step = 1;
+    let mut x = 0;
+    let  mx = *a;
     for _ in 0..len {
         if *a % 10 == (*a / 10) % 10 || *a % 10 == x % 10 {
             step = 0;
@@ -45,12 +39,18 @@ fn task_3(a: &mut i32, len: i32) -> i32 {
         x = *a;
         *a /= 10;
     }
-    println!("{}", step);
     return if step == 0 { mx } else { 0 };
 }
 
-
-
+fn length(a: i32) -> i32 {
+    let mut x = a;
+    let mut len = 0;
+    while x > 0 {
+        x /= 10;
+        len += 1;
+    }
+    return len;
+}
 
 fn simpl_numb(a: i32) -> bool { 
     if a > 2 { 
@@ -62,39 +62,31 @@ fn simpl_numb(a: i32) -> bool {
                 return false; } 
 }
 
-fn length(a: &mut i32) -> i32 {
-    
-    let mut len = 0;
-    let mut x = *a;
-    while x > 0 {
-        x /= 10;
-        len += 1;
-    }
-    return len;
-}
-
 fn main() {
     let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("Failed to read input");
-    let mut numb: i32 = input.trim().parse().expect("Invalid input");
+    io::stdin().read_line(&mut input).unwrap();
+    let numb: i32 = input.trim().parse().unwrap();
+    let mut k = 0;
+    let mut count = 0;
+    let mut numb_x = 0;
+    let mut len = 0;
     match numb {
-        1 => println!("{}", task_1(&mut numb)),
+        1 => println!("{}", task_1(&mut k)),
         2 => println!("{}", task_2()),
         3 => {
-            let mut numb_x = String::new();
-            io::stdin().read_line(&mut numb_x).expect("Failed to read input");
-            let numb_x: i32 = numb_x.trim().parse().expect("Invalid input");
-            println!("Numbers:");
-            let mut count = 0;
-            let mut len = 0;
-            while count < numb_x {
-            let mut inputX = String::new();
-    io::stdin().read_line(&mut inputX).expect("Failed to read input");
-    let mut k : i32 = input.trim().parse().expect("Invalid input");
-                len = length(&mut k);
-                println!("{}", task_3(&mut k, len));
+            input = String::new();
+            io::stdin().read_line(&mut input).unwrap();
+            numb_x = input.trim().parse().unwrap();
+           
+            while count < numb_x { 
+            input = String::new();
+            io::stdin().read_line(&mut input).unwrap();
+            let mut k : i32 = input.trim().parse().expect("Invalid input");
+                len = length(k);
+                println!("\n{}", task_3(&mut k, len));
                 count += 1;
             }
+            println!();
         }
         _ => println!("Try again"),
     }

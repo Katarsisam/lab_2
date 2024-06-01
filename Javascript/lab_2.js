@@ -22,16 +22,11 @@ function Task_2() {
 }
 
 function Task_3(a, len) {
-    let step = 1, numb = 0;
+    let step = 1;
     let X = 0;
-    console.log("Numbers:");
+    let MX = a;
     for (let i = 0; i < len; i++) {
-        if (step === 1 && Math.floor(a / 10) !== 0) {
-            numb++;
-            console.log("\n" + numb + ": ");
-        }
         if (a % 10 === Math.floor(a / 10) % 10 || a % 10 === X % 10) {
-            console.log(a % 10);
             step = 0;
         } else {
             step++;
@@ -39,6 +34,7 @@ function Task_3(a, len) {
         X = a;
         a = Math.floor(a / 10);
     }
+    return step === 0 ? MX : 0;
 }
 
 function Lenth(a) {
@@ -64,7 +60,7 @@ function SimplNumb(a) {
 }
 
 function main() {
-    let Numb, k;
+    let Numb, k, count = 0, NumbX;
     Numb = parseInt(prompt("Enter a number:"));
     switch (Numb) {
         case 1:
@@ -74,8 +70,13 @@ function main() {
             console.log(Task_2());
             break;
         case 3:
-            k = parseInt(prompt("Enter a number:"));
-            Task_3(k, Lenth(k));
+            NumbX = parseInt(prompt());
+            console.log("Numbers:");
+            while (count < NumbX) {
+                k = parseInt(prompt());
+                console.log(Task_3(k, Lenth(k)));
+                count++;
+            }
             console.log("\n");
             break;
         default:

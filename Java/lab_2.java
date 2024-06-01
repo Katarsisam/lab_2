@@ -5,7 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int Numb = scanner.nextInt();
         int k = 0;
-
+        int count = 0;
         switch (Numb) {
             case 1:
                 System.out.println(Task_1(k));
@@ -14,9 +14,12 @@ public class Main {
                 System.out.println(Task_2());
                 break;
             case 3:
-                k = scanner.nextInt();
-                Task_3(k, Lenth(k));
-                System.out.println();
+                int NumbX = scanner.nextInt();
+                while (count < NumbX) {
+                    k = scanner.nextInt();
+                    System.out.println(Task_3(k, Lenth(k)));
+                    count++;
+                }
                 break;
             default:
                 System.out.println("Try again");
@@ -54,40 +57,29 @@ public class Main {
         return c;
     }
 
-    public static void Task_3(int a, int len) {
-        int step = 1, numb = 0;
+    public static int Task_3(int a, int len) {
+        int step = 1;
         int X = 0;
-        System.out.print("Numbers:");
-
-        while (len > 0) {
-            if (step == 1 && a / 10 != 0) {
-                numb++;
-                System.out.print("\n" + numb + ": ");
-            }
-
+        int MX = a;
+        for (int i = 0; i < len; i++) {
             if (a % 10 == (a / 10) % 10 || a % 10 == X % 10) {
-                System.out.print(a % 10);
                 step = 0;
             } else {
                 step++;
             }
-
             X = a;
             a /= 10;
-            len--;
         }
+        return step == 0 ? MX : 0;
     }
 
     public static int Lenth(int a) {
-        
         int len = 0;
         int X = a;
-
         while (X > 0) {
             X /= 10;
             len++;
         }
-
         return len;
     }
 

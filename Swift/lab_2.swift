@@ -29,19 +29,13 @@ func task2() -> Int {
     return c
 }
 
-func task3(_ a : inout Int, _ len : Int) {
+func Task_3(_ a: Int, _ len: Int) -> Int {
     var step = 1
-    var numb = 0
     var X = 0
-    print("Numbers:")
+    let MX = a
     var tempA = a
     for _ in 0..<len {
-        if step == 1 && tempA / 10 != 0 {
-            numb += 1
-            print("\n\(numb): ", terminator: "")
-        }
-        if tempA % 10 == (tempA / 10) % 10 || tempA % 10 == X % 10 {
-            print("\(tempA % 10)", terminator: "")
+        if a % 10 == (tempA / 10) % 10 || tempA % 10 == X % 10 {
             step = 0
         } else {
             step += 1
@@ -49,6 +43,7 @@ func task3(_ a : inout Int, _ len : Int) {
         X = tempA
         tempA /= 10
     }
+    return step == 0 ? MX : 0
 }
 
 func length(_ a: Int) -> Int {
@@ -76,6 +71,8 @@ func simplNumb(_ a: Int) -> Bool {
 
 let numb = Int(readLine(strippingNewline: true)!)!  
 var k = 0
+var NumbX = 0
+var count = 0
 
 switch numb {
 case 1:
@@ -83,9 +80,12 @@ case 1:
 case 2:
     print(task2())
 case 3:
-    var k = Int(readLine(strippingNewline: true)!)!  
-    task3(&k, length(k))
-    print("\n")
+    NumbX = Int(readLine(strippingNewline: true)!)! 
+    print("Numbers:")
+    while count < NumbX {
+        let k = Int(readLine(strippingNewline: true)!)! 
+        print(Task_3(k, Length(k)))
+        count += 1}
 default:
     print("Try again")
 }

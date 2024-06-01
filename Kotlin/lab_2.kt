@@ -30,37 +30,32 @@ for (i in 0..9) {
 
 
 
-fun Task_3(_a: Int, len: Int) { 
-    var a = _a
-    var step = 1 
-    var numb = 0 
-    var X = 0 
-    print("Numbers:") 
-    for (i in 0 until len) { 
-        if (step == 1 && a / 10 != 0) { 
-            numb++ 
-            print("\n$numb: ") } 
-        if (a % 10 == (a / 10) % 10 || a % 10 == X % 10) { 
-            print(a % 10) 
-            step = 0 
-        } else { 
-            step++ 
-        } 
-        X = a
-        a /= 10 
-    } 
+fun Task_3(a: Int, len: Int): Int {
+    var step = 1
+    var X = 0
+    var MX = a
+    var tempA = a
+    for (i in 0 until len) {
+        if (tempA % 10 == tempA / 10 % 10 || tempA % 10 == X % 10) {
+            step = 0
+        } else {
+            step++
+        }
+        X = tempA
+        tempA /= 10
+    }
+    return if (step == 0) MX else 0
 }
 
-
-
-fun Lenth(a: Int): Int { 
-    var num = a 
-    var len = 0 
-    while (num != 0) { 
-        num /= 10 
-        len++ } 
-    return len }
-
+fun Length(a: Int): Int {
+    var X = a
+    var len = 0
+    while (X > 0) {
+        X /= 10
+        len++
+    }
+    return len
+}
 
 
 fun SimplNumb(a: Int): Boolean { 
@@ -80,16 +75,20 @@ fun SimplNumb(a: Int): Boolean {
 
 fun main() { 
     val scanner = Scanner(System.`in`) 
-    
+    var count = 0
+    var NumbX: Int
     var k = 0 
-    println("Введите число:") 
+    println("Print Number:") 
     var Numb = scanner.nextInt() 
     when (Numb) { 
         1 -> println(Task_1(k)) 
         2 -> println(Task_2()) 
-        3 -> {  k = scanner.nextInt()
-                Task_3(k, Lenth(k)) 
-            	println() 
+        3 -> {
+            NumbX = scanner.nextInt() 
+            while (count < NumbX) {
+                k = scanner.nextInt()
+                println(Task_3(k, Length(k))) 
+            	count++ }
         	 } 
-        else -> println("Попробуйте снова") } 
+        else -> println("Try again") } 
 }

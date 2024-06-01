@@ -34,31 +34,29 @@ func Task_2() int {
 	return c
 }
 
-func Task_3(a int, len int) {
+func Task3(a *int, len int) int {
 	step := 1
-	numb := 0
 	X := 0
-	fmt.Print("Numbers:")
+	MX := *a
 	for i := 0; i < len; i++ {
-		if step == 1 && a/10 != 0 {
-			numb++
-			fmt.Printf("\n%d: ", numb)
-		}
-		if a%10 == (a/10)%10 || a%10 == X%10 {
-			fmt.Printf("%d", a%10)
+		if *a%10 == (*a/10)%10 || *a%10 == X%10 {
 			step = 0
 		} else {
 			step++
 		}
-		X = a
-		a /= 10
+		X = *a
+		*a /= 10
 	}
+	if step == 0 {
+		return MX
+	}
+	return 0
 }
 
-func Lenth(a int) int {
-
-	len := 0
-	X := a
+func Length(a *int) int {
+    fmt.Scan(a)
+	var len, X int
+	X = *a
 	for X > 0 {
 		X /= 10
 		len++
@@ -79,7 +77,7 @@ func SimplNumb(a int) bool {
 }
 
 func main() {
-	var Numb, k int
+	var NumbX, Numb, k, count int
 	fmt.Scan(&Numb)
 	switch Numb {
 	case 1:
@@ -87,9 +85,14 @@ func main() {
 	case 2:
 		fmt.Println(Task_2())
 	case 3:
-	    fmt.Scan(&k)
-		len := Lenth(k)
-		Task_3(k, len)
+	    fmt.Scan(&NumbX)
+		fmt.Print("Numbers:")
+		for count < NumbX {
+		    
+			fmt.Printf("\n%d", Task3(&k, Length(&k)))
+			count++
+		}
+		fmt.Println()
 	default:
 		fmt.Println("Try again")
 	}

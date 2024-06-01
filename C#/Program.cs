@@ -1,13 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
 using System;
 
 class Program
 {
     static void Main()
     {
-        int Numb;
-        int k = 0;
-        int len;
+        int Numb, k = 0, count = 0, NumbX;
         Numb = int.Parse(Console.ReadLine());
         switch (Numb)
         {
@@ -18,8 +16,13 @@ class Program
                 Console.WriteLine(Task_2());
                 break;
             case 3:
-                len = Lenth(ref k);
-                Task_3(k, len);
+                NumbX = int.Parse(Console.ReadLine());
+                Console.WriteLine("Numbers:");
+                while (count < NumbX)
+                {
+                    Console.WriteLine(Task_3(ref k, Lenth(ref k)));
+                    count++;
+                }
                 Console.WriteLine();
                 break;
             default:
@@ -57,21 +60,15 @@ class Program
         return c;
     }
 
-    static void Task_3(int a, int len)
-    {  
-        int step = 1, numb = 0;
+    static int Task_3(ref int a, int len)
+    {
+        int step = 1;
         int X = 0;
-        Console.Write("Numbers:");
+        int MX = a;
         for (int i = 0; i < len; i++)
         {
-            if (step == 1 && a / 10 != 0)
-            {
-                numb++;
-                Console.Write($"\n{numb}: ");
-            }
             if (a % 10 == (a / 10) % 10 || a % 10 == X % 10)
             {
-                Console.Write(a % 10);
                 step = 0;
             }
             else
@@ -81,6 +78,7 @@ class Program
             X = a;
             a /= 10;
         }
+        return step == 0 ? MX : 0;
     }
 
     static int Lenth(ref int a)
