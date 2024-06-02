@@ -46,7 +46,7 @@ func Task_3(_ a: Int, _ len: Int) -> Int {
     return step == 0 ? MX : 0
 }
 
-func length(_ a: Int) -> Int {
+func Length(_ a: Int) -> Int {
     var len = 0
     var X = a
     while X > 0 {

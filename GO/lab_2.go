@@ -86,10 +86,10 @@ func main() {
 		fmt.Println(Task_2())
 	case 3:
 	    fmt.Scan(&NumbX)
-		fmt.Print("Numbers:")
+		fmt.Println("Numbers:")
 		for count < NumbX {
 		    
-			fmt.Printf("\n%d", Task3(&k, Length(&k)))
+			fmt.Println( Task3(&k, Length(&k)))
 			count++
 		}
 		fmt.Println()
